@@ -1,5 +1,7 @@
 extends "res://Enemy.gd"
 
+signal shake
+
 var speed = 300
 var seeking = true
 var falling = false
@@ -35,7 +37,8 @@ func land():
     $AnimatedSprite.play("landing")
     $Shadow.play("landing")
     $LandTimer.start()
-
+    emit_signal("shake", 500)
+    
 
 func seek():
     seeking = true

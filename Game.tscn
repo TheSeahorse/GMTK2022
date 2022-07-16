@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/board1.png" type="Texture" id=2]
 [ext_resource path="res://Hud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Camera.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -36,6 +37,9 @@ polygon = PoolVector2Array( 78, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 
 position = Vector2( 963, 209 )
 
 [node name="GameOverTimer" type="Timer" parent="."]
+
+[node name="Camera" parent="." instance=ExtResource( 4 )]
+offset = Vector2( 960, 540 )
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="stats_updated" from="Hud" to="." method="_on_Hud_stats_updated"]

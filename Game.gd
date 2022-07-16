@@ -26,11 +26,12 @@ func add_enemy():
     var enemyType = rng.randi_range(0, 2)
     var enemy
     if enemyType == 0:
-        enemy = Enemy3.instance()
+        enemy = Enemy.instance()
     if enemyType == 1:
-        enemy = Enemy3.instance()
+        enemy = Enemy2.instance()
     if enemyType == 2:
         enemy = Enemy3.instance()
+        enemy.connect("shake", self, "_camera_shake")
 
     enemy.position = get_enemy_spawnable_position()
     enemy.set_move_target(player)
@@ -46,6 +47,9 @@ func get_enemy_spawnable_position():
         return get_enemy_spawnable_position()
     else:
         return pos
+
+func _camera_shake(amount, time=0.6, limit=1000):
+    $Camera.shake(amount, time, limit)
 
 func _player_detected_enemy(body):
     var layer = body.get_collision_layer()
