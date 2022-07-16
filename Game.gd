@@ -2,6 +2,7 @@ extends Node2D
 
 onready var Enemy = preload("res://Enemy.tscn")
 onready var Enemy2 = preload("res://Enemy2.tscn")
+onready var Enemy3 = preload("res://Enemy3.tscn")
 onready var Player = preload("res://Player.tscn")
 onready var Dice = preload("res://Dice.tscn")
 
@@ -22,12 +23,14 @@ func _ready():
 
 
 func add_enemy():
-    var enemyType = rng.randi_range(0, 1)
+    var enemyType = rng.randi_range(0, 2)
     var enemy
     if enemyType == 0:
-        enemy = Enemy.instance()
+        enemy = Enemy3.instance()
     if enemyType == 1:
-        enemy = Enemy2.instance()
+        enemy = Enemy3.instance()
+    if enemyType == 2:
+        enemy = Enemy3.instance()
 
     enemy.position = get_enemy_spawnable_position()
     enemy.set_move_target(player)

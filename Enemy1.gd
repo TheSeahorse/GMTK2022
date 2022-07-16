@@ -2,7 +2,7 @@ extends "res://Enemy.gd"
 
 var speed = 200
 
-func _process(_delta):
+func _physics_process(_delta):
     var velocity = position.direction_to(move_target.position) * speed
     velocity = move_and_slide(velocity)
 
