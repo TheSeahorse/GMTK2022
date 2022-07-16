@@ -40,7 +40,7 @@ func get_enemy_spawnable_position():
     else:
         return pos
 
-func _player_detected_enemy(body):
+func _player_detected_enemy(_body):
     get_tree().change_scene("res://Menu.tscn")
 
 func _process(_delta):
