@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var Enemy = preload("res://Enemy.tscn")
+onready var Enemy2 = preload("res://Enemy2.tscn")
 onready var Player = preload("res://Player.tscn")
 
 var GAME_HEIGHT = ProjectSettings.get_setting("display/window/size/height")
@@ -20,7 +21,13 @@ func _ready():
 
 
 func add_enemy():
-    var enemy = Enemy.instance()
+    var enemyType = rng.randi_range(0, 1)
+    var enemy
+    if enemyType == 0:
+        enemy = Enemy.instance()
+    if enemyType == 1:
+        enemy = Enemy2.instance()
+
     enemy.position = get_enemy_spawnable_position()
     enemy.set_move_target(player)
     $Enemies.call_deferred("add_child", enemy)
@@ -36,14 +43,18 @@ func get_enemy_spawnable_position():
         return pos
 
 func _player_detected_enemy(body):
-    player.push(body.position.direction_to(player.position))
+    var layer = body.get_collision_layer()
+    if layer == 8: # Projectile
+        body.queue_free()
+    if layer == 4: # Enemy
+        player.push(body.position.direction_to(player.position))
     if player_health > 1:
         player_health -= 1
     else:
         get_tree().change_scene("res://Menu.tscn")
 
 func _process(_delta):
-    print($Enemies.get_child_count())
+    pass
 
 func _on_EnemySpawnTimer_timeout():
     add_enemy()
