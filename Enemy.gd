@@ -5,7 +5,7 @@ var move_target: Vector2
 var speed = 200
 
 func _ready():
-    pass # Replace with function body.
+    $AnimatedSprite.play()
 
 
 func _process(_delta):
