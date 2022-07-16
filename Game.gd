@@ -8,6 +8,7 @@ var GAME_WIDTH = ProjectSettings.get_setting("display/window/size/width")
 
 var rng = RandomNumberGenerator.new()
 var player
+var player_health = 3
 
 func _ready():
     rng.randomize()
@@ -34,8 +35,12 @@ func get_enemy_spawnable_position():
     else:
         return pos
 
-func _player_detected_enemy(_body):
-    get_tree().change_scene("res://Menu.tscn")
+func _player_detected_enemy(body):
+    player.push(body.position.direction_to(player.position))
+    if player_health > 1:
+        player_health -= 1
+    else:
+        get_tree().change_scene("res://Menu.tscn")
 
 func _process(_delta):
     print($Enemies.get_child_count())

@@ -10,6 +10,7 @@ var can_attack = true
 var is_attacking = false
 var enemies_in_range = []
 
+var pushed = false
 
 func _ready():
     friction = float(move_speed)/5000
@@ -32,7 +33,10 @@ func calculate_movement():
     var target_velocity = direction * move_speed
     velocity += (target_velocity - velocity) * friction
     if velocity.length() > move_speed:
-        velocity *= move_speed/velocity.length()
+        if not pushed:
+            velocity *= move_speed/velocity.length()
+    else:
+        pushed = false
     move_and_slide(velocity)
 
 
@@ -41,6 +45,10 @@ func get_direction() -> Vector2:
     direction.x = Input.get_axis("move_left", "move_right")
     direction.y = Input.get_axis("move_up", "move_down")
     return direction
+
+func push(direction: Vector2):
+    pushed = true
+    velocity = direction * move_speed * 5
 
 #for rotating towards the direction you're moving
 func rotate_player_towards_move():
