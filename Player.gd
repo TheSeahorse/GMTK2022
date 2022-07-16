@@ -16,6 +16,11 @@ func _ready():
     friction = float(move_speed)/5000
 
 
+func _process(delta):
+    if can_attack == false:
+        update_cooldown()
+
+
 func _physics_process(_delta):
     calculate_movement()
     rotate_player_towards_mouse()
@@ -81,14 +86,14 @@ func rotate_player_towards_mouse():
     aim_rotation = wrapf(aim_rotation, 0, 360)
     rotate_weapon(aim_rotation)
     if velocity.length() <= 20:
-        if $Sprite.get_animation() == "move_right":
+        if aim_rotation < 45 or aim_rotation >= 315:
             $Sprite.play("idle_right")
-        elif $Sprite.get_animation() == "move_left":
-            $Sprite.play("idle_left")
-        elif $Sprite.get_animation() == "move_up":
-            $Sprite.play("idle_up")
-        elif $Sprite.get_animation() == "move_down":
+        elif aim_rotation < 135 and aim_rotation >= 45:
             $Sprite.play("idle_down")
+        elif aim_rotation < 225 and aim_rotation >= 135:
+            $Sprite.play("idle_left")
+        elif aim_rotation < 315 and aim_rotation >= 225:
+            $Sprite.play("idle_up")
     elif aim_rotation < 45 or aim_rotation >= 315:
         $Sprite.play("move_right")
     elif aim_rotation < 135 and aim_rotation >= 45:
@@ -106,11 +111,17 @@ func rotate_weapon(dir):
 func attack():
     $Weapon.show()
     $Weapon/AttackLength.start()
-    $Weapon/AttackCooldown.start()
+    $Cooldown/AttackCooldown.start()
     can_attack = false
     is_attacking = true
     for enemy in enemies_in_range:
         enemy.die()
+
+func update_cooldown():
+    var total_time = $Cooldown/AttackCooldown.get_wait_time()
+    var time_left = $Cooldown/AttackCooldown.get_time_left()
+    var percentage = float(time_left/total_time)
+    $Cooldown.value = percentage * 100
 
 
 func _on_EnemyDetector_body_entered(body):
