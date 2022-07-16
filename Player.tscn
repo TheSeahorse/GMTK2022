@@ -38,11 +38,6 @@ flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 3210, 402, 642 )
 
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 402, 642 )
-
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 3 )
@@ -73,39 +68,14 @@ flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 3210, 402, 642 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 402, 642 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=30]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 642, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1284, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1926, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 2568, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 3210, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 4 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 402, 642 )
 
 [sub_resource type="AtlasTexture" id=32]
@@ -143,10 +113,40 @@ flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 0, 3210, 402, 642 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=31]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 642, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1284, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1926, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 2568, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 3210, 402, 642 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
@@ -155,24 +155,19 @@ animations = [ {
 "name": "move_left",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 11 ) ],
-"loop": true,
-"name": "idle_down",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
 "loop": true,
 "name": "move_right",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": true,
-"name": "move_down",
-"speed": 12.0
+"name": "idle_down",
+"speed": 5.0
 }, {
-"frames": [ SubResource( 31 ) ],
+"frames": [ SubResource( 30 ) ],
 "loop": true,
-"name": "idle_left",
+"name": "idle_right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 32 ) ],
@@ -185,18 +180,24 @@ animations = [ {
 "name": "move_up",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 30 ) ],
+"frames": [ SubResource( 31 ) ],
 "loop": true,
-"name": "idle_right",
+"name": "idle_left",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 12.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=10]
-height = 48.0
+radius = 18.0
+height = 104.0
 
 [sub_resource type="CapsuleShape2D" id=33]
-radius = 11.0
-height = 48.0
+radius = 19.0
+height = 104.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -204,12 +205,12 @@ collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.299751, 0.299751 )
+position = Vector2( 1, -67 )
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 9 )
 animation = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 18 )
 shape = SubResource( 10 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
@@ -217,7 +218,6 @@ collision_layer = 0
 collision_mask = 12
 
 [node name="EnemyDetectorShape" type="CollisionShape2D" parent="EnemyDetector"]
-position = Vector2( 0, 18 )
 shape = SubResource( 33 )
 
 [node name="Weapon" type="Area2D" parent="."]
@@ -238,13 +238,14 @@ one_shot = true
 
 [node name="Cooldown" type="TextureProgress" parent="."]
 margin_left = -51.0
-margin_top = -87.0
+margin_top = -216.0
 margin_right = 51.0
-margin_bottom = -78.0
+margin_bottom = -207.0
 value = 100.0
 texture_progress = ExtResource( 7 )
 
 [node name="AttackCooldown" type="Timer" parent="Cooldown"]
+wait_time = 2.1
 one_shot = true
 
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
