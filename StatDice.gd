@@ -16,7 +16,7 @@ func update_value(max_val: int):
 
 func extra_roll():
     if extra_rolls == 0:
-        emit_signal("signal")
+        emit_signal("updated")
         value = randi() % new_max_value + 1
         $Value.play(str(value))
         $ColorRect.show()
