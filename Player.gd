@@ -3,9 +3,12 @@ extends KinematicBody2D
 signal enemy_detected
 
 var move_speed: = 300
-
 var velocity = Vector2.ZERO
 var friction: float
+
+var can_attack = true
+var is_attacking = false
+var enemies_in_range = []
 
 
 func _ready():
@@ -14,7 +17,12 @@ func _ready():
 
 func _physics_process(_delta):
     calculate_movement()
-    rotate_player_towards_move()
+    rotate_player_towards_mouse()
+
+
+func _input(event):
+    if event.is_action_pressed("attack") and can_attack:
+        attack()
 
 
 func calculate_movement():
@@ -63,8 +71,16 @@ func rotate_player_towards_mouse():
     aim_direction = position.direction_to(get_viewport().get_mouse_position()).normalized()
     var aim_rotation = rad2deg(aim_direction.angle())
     aim_rotation = wrapf(aim_rotation, 0, 360)
-    if velocity.length() <= 10:
-        $Sprite.play("idle")
+    rotate_weapon(aim_rotation)
+    if velocity.length() <= 20:
+        if $Sprite.get_animation() == "move_right":
+            $Sprite.play("idle_right")
+        elif $Sprite.get_animation() == "move_left":
+            $Sprite.play("idle_left")
+        elif $Sprite.get_animation() == "move_up":
+            $Sprite.play("idle_up")
+        elif $Sprite.get_animation() == "move_down":
+            $Sprite.play("idle_down")
     elif aim_rotation < 45 or aim_rotation >= 315:
         $Sprite.play("move_right")
     elif aim_rotation < 135 and aim_rotation >= 45:
@@ -74,5 +90,36 @@ func rotate_player_towards_mouse():
     elif aim_rotation < 315 and aim_rotation >= 225:
         $Sprite.play("move_up")
 
+
+func rotate_weapon(dir):
+    if not is_attacking:
+        $Weapon.rotation_degrees = dir
+
+func attack():
+    $Weapon.show()
+    $Weapon/AttackLength.start()
+    $Weapon/AttackCooldown.start()
+    can_attack = false
+    is_attacking = true
+    for enemy in enemies_in_range:
+        enemy.die()
+
+
 func _on_EnemyDetector_body_entered(body):
     emit_signal("enemy_detected", body)
+
+
+func _on_AttackCooldown_timeout():
+    can_attack = true
+
+func _on_AttackLength_timeout():
+    is_attacking = false
+    $Weapon.hide()
+
+
+func _on_Weapon_body_entered(body):
+    enemies_in_range.append(body)
+
+
+func _on_Weapon_body_exited(body):
+    enemies_in_range.remove(enemies_in_range.find(body))

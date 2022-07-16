@@ -8,7 +8,6 @@ var GAME_WIDTH = ProjectSettings.get_setting("display/window/size/width")
 
 var rng = RandomNumberGenerator.new()
 var player
-var enemies = []
 
 func _ready():
     rng.randomize()
@@ -18,18 +17,13 @@ func _ready():
     add_child(player)
     add_enemy()
 
-func _unhandled_input(event):
-    if event is InputEventKey:
-        if event.pressed and event.scancode == KEY_SPACE:
-            var popped_enemy = enemies.pop_back()
-            popped_enemy.queue_free()
-            add_enemy()
 
 func add_enemy():
     var enemy = Enemy.instance()
     enemy.position = get_enemy_spawnable_position()
-    call_deferred("add_child", enemy)
-    enemies.append(enemy)
+    enemy.set_move_target(player)
+    $Enemies.call_deferred("add_child", enemy)
+    enemy.set_move_target(player)
 
 func get_enemy_spawnable_position():
     var x = rng.randi_range(200, 1720)
@@ -44,9 +38,7 @@ func _player_detected_enemy(_body):
     get_tree().change_scene("res://Menu.tscn")
 
 func _process(_delta):
-    for enemy in enemies:
-        enemy.set_move_target(player.position)
-
+    print($Enemies.get_child_count())
 
 func _on_EnemySpawnTimer_timeout():
     add_enemy()
