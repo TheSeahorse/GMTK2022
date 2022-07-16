@@ -36,8 +36,15 @@ func rotate_player_towards_move():
     var move_direction = velocity.normalized()
     var move_rotation = rad2deg(move_direction.angle())
     move_rotation = wrapf(move_rotation, 0, 360)
-    if velocity.length() <= 10:
-        $Sprite.play("idle")
+    if velocity.length() <= 20:
+        if $Sprite.get_animation() == "move_right":
+            $Sprite.play("idle_right")
+        elif $Sprite.get_animation() == "move_left":
+            $Sprite.play("idle_left")
+        elif $Sprite.get_animation() == "move_up":
+            $Sprite.play("idle_up")
+        elif $Sprite.get_animation() == "move_down":
+            $Sprite.play("idle_down")
     elif move_rotation < 45 or move_rotation >= 315:
         $Sprite.play("move_right")
     elif move_rotation < 135 and move_rotation >= 45:
