@@ -23,4 +23,10 @@ autostart = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( 78, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 1828, 516, 1822, 312, 1636, 300, 1467, 308, 1259, 312, 944, 314, 657, 310, 373, 310, 219, 322, 36, 328, 40, 94, 1858, 94, 1874, 1079, 38, 1081, 40, 352, 80, 290 )
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]

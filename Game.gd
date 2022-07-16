@@ -15,7 +15,7 @@ var player_health = 3
 func _ready():
     rng.randomize()
     player = Player.instance()
-    player.position = Vector2(200,200)
+    player.position = Vector2(400,400)
     player.connect("enemy_detected", self, "_player_detected_enemy")
     add_child(player)
     add_enemy()
