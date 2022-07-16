@@ -38,6 +38,16 @@ flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 3210, 402, 642 )
 
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 402, 642 )
+
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 5 )
@@ -67,16 +77,6 @@ region = Rect2( 0, 2568, 402, 642 )
 flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 0, 3210, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 402, 642 )
 
 [sub_resource type="AtlasTexture" id=30]
 flags = 4
@@ -113,9 +113,9 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 3210, 402, 642 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 5 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 402, 642 )
 
 [sub_resource type="AtlasTexture" id=24]
@@ -155,20 +155,20 @@ animations = [ {
 "name": "move_left",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
-"loop": true,
-"name": "move_up",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 11 ) ],
-"loop": true,
-"name": "idle_down",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 31 ) ],
 "loop": true,
 "name": "idle_left",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 32 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "move_up",
+"speed": 12.0
 }, {
 "frames": [ SubResource( 30 ) ],
 "loop": true,
@@ -180,9 +180,9 @@ animations = [ {
 "name": "move_down",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 32 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": true,
-"name": "idle_up",
+"name": "idle_down",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
@@ -240,6 +240,7 @@ margin_left = -51.0
 margin_top = -216.0
 margin_right = 51.0
 margin_bottom = -207.0
+mouse_filter = 2
 value = 100.0
 texture_progress = ExtResource( 7 )
 
