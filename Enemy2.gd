@@ -1,12 +1,8 @@
-extends KinematicBody2D
+extends "res://Enemy.gd"
 
 onready var Projectile = preload("res://Enemy2Projectile.tscn")
 
-var move_target: KinematicBody2D
 var speed = 50
-
-func _ready():
-    $AnimatedSprite.play()
 
 
 func _process(_delta):
@@ -23,9 +19,5 @@ func attack():
     p.position = position
     get_parent().add_child(p)
 
-
 func _on_AttackTimer_timeout():
     attack()
-
-func die():
-    self.queue_free()
