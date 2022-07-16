@@ -1,10 +1,21 @@
 extends Node2D
 
+onready var Enemy = preload("res://Enemy.tscn")
+onready var Player = preload("res://Player.tscn")
+
+var GAME_HEIGHT = ProjectSettings.get_setting("display/window/size/height")
+var GAME_WIDTH = ProjectSettings.get_setting("display/window/size/width")
+
+var player
+var enemy
 
 func _ready():
-    pass # Replace with function body.
+    player = Player.instance()
+    player.position = Vector2(200,200)
+    add_child(player)
+    enemy = Enemy.instance()
+    enemy.position = Vector2(800,800)
+    add_child(enemy)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(_delta):
+    enemy.set_move_target(player.position)
