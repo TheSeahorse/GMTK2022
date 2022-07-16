@@ -3,29 +3,29 @@
 [ext_resource path="res://Enemy2Projectile.gd" type="Script" id=1]
 [ext_resource path="res://assets/Enemy2/spritesheet43.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 316, 316 )
+region = Rect2( 0, 0, 124, 124 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 0, 316, 316, 316 )
+region = Rect2( 0, 124, 124, 124 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 0, 632, 316, 316 )
+region = Rect2( 0, 248, 124, 124 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 0, 948, 316, 316 )
+region = Rect2( 0, 372, 124, 124 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "default",
 "speed": 8.0

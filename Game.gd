@@ -47,9 +47,10 @@ func get_enemy_spawnable_position():
 func _player_detected_enemy(body):
     var layer = body.get_collision_layer()
     if layer == 8: # Projectile
+        player.push(body.get_direction(), 2)
         body.queue_free()
     if layer == 4: # Enemy
-        player.push(body.position.direction_to(player.position))
+        player.push(body.position.direction_to(player.position), 5)
     if player_health > 1:
         player_health -= 1
     else:

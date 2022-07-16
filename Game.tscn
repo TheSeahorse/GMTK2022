@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/board1.png" type="Texture" id=2]
+[ext_resource path="res://Hud.tscn" type="PackedScene" id=3]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -11,6 +12,7 @@ margin_left = -25.0
 margin_top = -20.0
 margin_right = 1958.0
 margin_bottom = 1111.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="Background" type="Sprite" parent="."]
@@ -24,9 +26,13 @@ autostart = true
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Walls" type="StaticBody2D" parent="."]
+visible = false
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( 78, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 1828, 516, 1822, 312, 1636, 300, 1467, 308, 1259, 312, 944, 314, 657, 310, 373, 310, 219, 322, 36, 328, 40, 94, 1858, 94, 1874, 1079, 38, 1081, 40, 352, 80, 290 )
+
+[node name="Hud" parent="." instance=ExtResource( 3 )]
+position = Vector2( 963, 209 )
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]

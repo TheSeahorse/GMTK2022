@@ -1,41 +1,93 @@
-[gd_scene format=2]
+[gd_scene load_steps=11 format=2]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource path="res://assets/HUD/dices.png" type="Texture" id=1]
+[ext_resource path="res://Dice.gd" type="Script" id=7]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 82, 77, 82 )
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-margin_left = -13.0
-margin_top = -13.0
-margin_right = -8.0
-margin_bottom = -8.0
-color = Color( 0, 0, 0, 1 )
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 77, 82 )
 
-[node name="ColorRect3" type="ColorRect" parent="."]
-margin_left = 8.0
-margin_top = 5.0
-margin_right = 13.0
-margin_bottom = 10.0
-color = Color( 0, 0, 0, 1 )
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 410, 77, 82 )
 
-[node name="ColorRect4" type="ColorRect" parent="."]
-margin_left = 8.0
-margin_top = -13.0
-margin_right = 13.0
-margin_bottom = -8.0
-color = Color( 0, 0, 0, 1 )
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 328, 77, 82 )
 
-[node name="ColorRect5" type="ColorRect" parent="."]
-margin_left = -13.0
-margin_top = 5.0
-margin_right = -8.0
-margin_bottom = 10.0
-color = Color( 0, 0, 0, 1 )
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 164, 77, 82 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 246, 77, 82 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "6",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "4",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30.5, 34.5 )
+
+[node name="Dice" type="Area2D"]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource( 7 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 4.5 )
+shape = SubResource( 2 )
+
+[node name="ChangeValueTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_Dice_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Dice_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_Dice_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Dice_mouse_exited"]
+[connection signal="timeout" from="ChangeValueTimer" to="." method="_on_ChangeValueTimer_timeout"]

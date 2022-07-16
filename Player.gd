@@ -51,9 +51,11 @@ func get_direction() -> Vector2:
     direction.y = Input.get_axis("move_up", "move_down")
     return direction
 
-func push(direction: Vector2):
+
+func push(direction: Vector2, push_speed):
     pushed = true
-    velocity = direction * move_speed * 5
+    velocity = direction * move_speed * push_speed
+
 
 #for rotating towards the direction you're moving
 func rotate_player_towards_move():
