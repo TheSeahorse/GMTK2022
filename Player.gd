@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal enemy_detected
+signal death_animation_finished
 
 var move_speed: = 200
 var move_speed_modifier: = 0
@@ -14,6 +15,7 @@ var is_attacking = false
 var enemies_in_range = []
 
 var pushed = false
+var alive = true
 
 func _ready():
     friction = float(move_speed)/5000
@@ -35,6 +37,8 @@ func _input(event):
 
 
 func calculate_movement():
+    if not alive:
+        return
     var current_move_speed = move_speed + 60 * move_speed_modifier
     var direction = get_direction()
     if direction.length() > 1.0:
@@ -63,6 +67,8 @@ func push(direction: Vector2, push_speed):
 
 #for rotating towards the direction you're moving
 func rotate_player_towards_move():
+    if not alive:
+        return
     var move_direction = velocity.normalized()
     var move_rotation = rad2deg(move_direction.angle())
     move_rotation = wrapf(move_rotation, 0, 360)
@@ -86,6 +92,8 @@ func rotate_player_towards_move():
 
 #for rotating the player relative to the mouse
 func rotate_player_towards_mouse():
+    if not alive:
+        return
     var aim_direction: Vector2
     aim_direction = position.direction_to(get_viewport().get_mouse_position()).normalized()
     var aim_rotation = rad2deg(aim_direction.angle())
@@ -115,6 +123,8 @@ func rotate_weapon(dir):
         $Weapon.rotation_degrees = dir
 
 func attack():
+    if not alive:
+        return
     $Weapon.show()
     $Weapon/AttackLength.start()
     $Cooldown/AttackCooldown.start()
@@ -140,6 +150,10 @@ func set_attack_modifier(mod):
 func set_movement_modifier(mod):
     move_speed_modifier = mod
 
+func play_death_animation():
+    alive = false
+    $Sprite.play("death")
+
 func _on_AttackCooldown_timeout():
     can_attack = true
     $Cooldown/AttackCooldown.wait_time = attack_cooldown - 0.3 * attack_cooldown_modifier
@@ -155,3 +169,9 @@ func _on_Weapon_body_entered(body):
 
 func _on_Weapon_body_exited(body):
     enemies_in_range.remove(enemies_in_range.find(body))
+
+
+func _on_Sprite_animation_finished():
+    if $Sprite.get_animation() == "death":
+        $Sprite.stop()
+        emit_signal("death_animation_finished")

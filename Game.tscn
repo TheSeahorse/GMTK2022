@@ -35,5 +35,8 @@ polygon = PoolVector2Array( 78, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 
 [node name="Hud" parent="." instance=ExtResource( 3 )]
 position = Vector2( 963, 209 )
 
+[node name="GameOverTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="stats_updated" from="Hud" to="." method="_on_Hud_stats_updated"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]

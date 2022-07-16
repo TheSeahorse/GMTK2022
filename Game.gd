@@ -54,7 +54,9 @@ func _player_detected_enemy(body):
     if player_health > 1:
         player_health -= 1
     else:
-        get_tree().change_scene("res://Menu.tscn")
+        player.play_death_animation()
+        $GameOverTimer.start()
+
 
 func _enemy_died(position: Vector2):
     var dice = Dice.instance()
@@ -72,3 +74,7 @@ func _on_Hud_stats_updated():
     player_health = $Hud.get_health_stat()
     player.set_movement_modifier($Hud.get_speed_stat())
     player.set_attack_modifier($Hud.get_cooldown_stat())
+
+
+func _on_GameOverTimer_timeout():
+    get_tree().change_scene("res://Menu.tscn")

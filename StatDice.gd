@@ -9,10 +9,10 @@ var extra_rolls = 0
 
 
 func update_value(max_val: int):
-    new_max_value = max_val 
+    new_max_value = max_val
     extra_rolls = 6
     extra_roll()
-    
+
 
 func extra_roll():
     if extra_rolls == 0:
@@ -31,4 +31,4 @@ func extra_roll():
 
 
 func _on_ColorTimer_timeout():
-    $ColorRect.hide() 
+    $ColorRect.hide()
