@@ -8,11 +8,8 @@ var stat_box: Area2D = null
 func _process(delta):
     if Input.is_mouse_button_pressed(1) and mouse_over:
         self.position = get_viewport().get_mouse_position()
-    if Input.is_action_just_released("left_click"):
-        print(mouse_over)
-        print(stat_box_over)
     if Input.is_action_just_released("left_click") and mouse_over and stat_box_over:
-        stat_box.update_value(randi() % max_value + 1)
+        stat_box.update_value(max_value)
         self.queue_free()
 
 
