@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
+signal enemy_detected
+
 var move_speed: = 300
+
 var velocity = Vector2.ZERO
 var friction: float
 
@@ -53,7 +56,7 @@ func rotate_player_towards_move():
         $Sprite.play("move_left")
     elif move_rotation < 315 and move_rotation >= 225:
         $Sprite.play("move_up")
-    
+
 #for rotating the player relative to the mouse
 func rotate_player_towards_mouse():
     var aim_direction: Vector2
@@ -70,3 +73,7 @@ func rotate_player_towards_mouse():
         $Sprite.play("move_left")
     elif aim_rotation < 315 and aim_rotation >= 225:
         $Sprite.play("move_up")
+
+func _on_EnemyDetector_body_entered(body):
+    print("Player detected enemy")
+    emit_signal("enemy_detected", body)

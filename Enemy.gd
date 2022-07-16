@@ -8,7 +8,7 @@ func _ready():
     pass # Replace with function body.
 
 
-func _process(delta):
+func _process(_delta):
     var velocity = position.direction_to(move_target) * speed
     velocity = move_and_slide(velocity)
 
