@@ -4,34 +4,42 @@
 [ext_resource path="res://Enemy2.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 402, 517 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 517, 402, 517 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1034, 402, 517 )
 
 [sub_resource type="AtlasTexture" id=5]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1551, 402, 517 )
 
 [sub_resource type="AtlasTexture" id=6]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 2068, 402, 517 )
 
 [sub_resource type="AtlasTexture" id=7]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 2585, 402, 517 )
 
 [sub_resource type="AtlasTexture" id=8]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 3102, 402, 517 )
 
 [sub_resource type="AtlasTexture" id=9]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 3619, 402, 517 )
 
@@ -43,8 +51,8 @@ animations = [ {
 "speed": 14.0
 } ]
 
-[sub_resource type="CircleShape2D" id=11]
-radius = 145.086
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 160, 197.5 )
 
 [node name="Enemy2" type="KinematicBody2D"]
 scale = Vector2( 0.2, 0.2 )
@@ -57,6 +65,8 @@ rotation = 3.14159
 frames = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -5, -22.5 )
+scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 11 )
 
 [node name="AttackTimer" type="Timer" parent="."]
