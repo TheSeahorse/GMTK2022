@@ -41,10 +41,12 @@ func get_enemy_spawnable_position():
         return pos
 
 func _player_detected_enemy(body):
-    add_enemy()
-    enemies.erase(body)
-    body.queue_free()
+    get_tree().change_scene("res://Menu.tscn")
 
 func _process(_delta):
     for enemy in enemies:
         enemy.set_move_target(player.position)
+
+
+func _on_EnemySpawnTimer_timeout():
+    add_enemy()

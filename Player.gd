@@ -75,5 +75,4 @@ func rotate_player_towards_mouse():
         $Sprite.play("move_up")
 
 func _on_EnemyDetector_body_entered(body):
-    print("Player detected enemy")
     emit_signal("enemy_detected", body)
