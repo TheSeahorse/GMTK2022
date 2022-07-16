@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var move_speed: = 100
+var move_speed: = 300
 var velocity = Vector2.ZERO
 var friction: float
 
@@ -11,7 +11,7 @@ func _ready():
 
 func _physics_process(_delta):
     calculate_movement()
-    rotate_player()
+    rotate_player_towards_move()
 
 
 func calculate_movement():
@@ -22,7 +22,7 @@ func calculate_movement():
     velocity += (target_velocity - velocity) * friction
     if velocity.length() > move_speed:
         velocity *= move_speed/velocity.length()
-    velocity = move_and_slide(velocity)
+    move_and_slide(velocity)
 
 
 func get_direction() -> Vector2:
@@ -31,17 +31,35 @@ func get_direction() -> Vector2:
     direction.y = Input.get_axis("move_up", "move_down")
     return direction
 
+#for rotating towards the direction you're moving
+func rotate_player_towards_move():
+    var move_direction = velocity.normalized()
+    var move_rotation = rad2deg(move_direction.angle())
+    move_rotation = wrapf(move_rotation, 0, 360)
+    if velocity.length() <= 10:
+        $Sprite.play("idle")
+    elif move_rotation < 45 or move_rotation >= 315:
+        $Sprite.play("move_right")
+    elif move_rotation < 135 and move_rotation >= 45:
+        $Sprite.play("move_down")
+    elif move_rotation < 225 and move_rotation >= 135:
+        $Sprite.play("move_left")
+    elif move_rotation < 315 and move_rotation >= 225:
+        $Sprite.play("move_up")
+    
 #for rotating the player relative to the mouse
-func rotate_player():
+func rotate_player_towards_mouse():
     var aim_direction: Vector2
     aim_direction = position.direction_to(get_viewport().get_mouse_position()).normalized()
     var aim_rotation = rad2deg(aim_direction.angle())
     aim_rotation = wrapf(aim_rotation, 0, 360)
-    #if aim_rotation < 45 or aim_rotation >= 315:
-    #	$Sprite.play("right")
-    #elif aim_rotation < 135 and aim_rotation >= 45:
-    #	$Sprite.play("down")
-    #elif aim_rotation < 225 and aim_rotation >= 135:
-    #	$Sprite.play("left")
-    #elif aim_rotation < 315 and aim_rotation >= 225:
-    #	$Sprite.play("up")
+    if velocity.length() <= 10:
+        $Sprite.play("idle")
+    elif aim_rotation < 45 or aim_rotation >= 315:
+        $Sprite.play("move_right")
+    elif aim_rotation < 135 and aim_rotation >= 45:
+        $Sprite.play("move_down")
+    elif aim_rotation < 225 and aim_rotation >= 135:
+        $Sprite.play("move_left")
+    elif aim_rotation < 315 and aim_rotation >= 225:
+        $Sprite.play("move_up")
