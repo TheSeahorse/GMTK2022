@@ -10,7 +10,7 @@ var GAME_WIDTH = ProjectSettings.get_setting("display/window/size/width")
 
 var rng = RandomNumberGenerator.new()
 var player
-var player_health = 3
+var player_health = 1
 
 func _ready():
     rng.randomize()
@@ -66,3 +66,9 @@ func _process(_delta):
 
 func _on_EnemySpawnTimer_timeout():
     add_enemy()
+
+
+func _on_Hud_stats_updated():
+    player_health = $Hud.get_health_stat()
+    player.set_movement_modifier($Hud.get_speed_stat())
+    player.set_attack_modifier($Hud.get_cooldown_stat())

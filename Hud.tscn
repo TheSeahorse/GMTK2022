@@ -31,3 +31,7 @@ stat = "speed"
 [node name="StatDice3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 422, 1 )
 stat = "cooldown"
+
+[connection signal="updated" from="StatDice" to="." method="_on_StatDice_updated"]
+[connection signal="updated" from="StatDice2" to="." method="_on_StatDice_updated"]
+[connection signal="updated" from="StatDice3" to="." method="_on_StatDice_updated"]

@@ -24,8 +24,6 @@ func _on_AttackTimer_timeout():
 
 
 func _on_AnimatedSprite_frame_changed():
-    print($AnimatedSprite.animation)
-    print($AnimatedSprite.frame)
     if $AnimatedSprite.animation == "shooting" and $AnimatedSprite.frame == 3:
         shoot()
 

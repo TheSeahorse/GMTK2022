@@ -36,3 +36,4 @@ polygon = PoolVector2Array( 78, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 
 position = Vector2( 963, 209 )
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
+[connection signal="stats_updated" from="Hud" to="." method="_on_Hud_stats_updated"]

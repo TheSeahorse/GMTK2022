@@ -2,7 +2,10 @@ extends KinematicBody2D
 
 signal enemy_detected
 
-var move_speed: = 300
+var move_speed: = 200
+var move_speed_modifier: = 0
+var attack_cooldown: float = 2.1
+var attack_cooldown_modifier = 0
 var velocity = Vector2.ZERO
 var friction: float
 
@@ -32,14 +35,15 @@ func _input(event):
 
 
 func calculate_movement():
+    var current_move_speed = move_speed + 60 * move_speed_modifier
     var direction = get_direction()
     if direction.length() > 1.0:
         direction = direction.normalized()
-    var target_velocity = direction * move_speed
+    var target_velocity = direction * current_move_speed
     velocity += (target_velocity - velocity) * friction
-    if velocity.length() > move_speed:
+    if velocity.length() > current_move_speed:
         if not pushed:
-            velocity *= move_speed/velocity.length()
+            velocity *= current_move_speed/velocity.length()
     else:
         pushed = false
     move_and_slide(velocity)
@@ -130,8 +134,15 @@ func _on_EnemyDetector_body_entered(body):
     emit_signal("enemy_detected", body)
 
 
+func set_attack_modifier(mod):
+    attack_cooldown_modifier = mod
+
+func set_movement_modifier(mod):
+    move_speed_modifier = mod
+
 func _on_AttackCooldown_timeout():
     can_attack = true
+    $Cooldown/AttackCooldown.wait_time = attack_cooldown - 0.3 * attack_cooldown_modifier
 
 func _on_AttackLength_timeout():
     is_attacking = false
