@@ -5,7 +5,7 @@ var mouse_over = false
 var stat_box_over = false
 var stat_box: Area2D = null
 
-func _process(delta):
+func _process(_delta):
     if Input.is_mouse_button_pressed(1) and mouse_over:
         self.position = get_viewport().get_mouse_position()
     if Input.is_action_just_released("left_click") and mouse_over and stat_box_over:
@@ -33,6 +33,6 @@ func _on_Dice_area_entered(area):
     stat_box_over = true
     stat_box = area
 
-func _on_Dice_area_exited(area):
+func _on_Dice_area_exited(_area):
     stat_box_over = false
     stat_box = null

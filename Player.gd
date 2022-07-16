@@ -21,7 +21,7 @@ func _ready():
     friction = float(move_speed)/5000
 
 
-func _process(delta):
+func _process(_delta):
     if can_attack == false:
         update_cooldown()
 

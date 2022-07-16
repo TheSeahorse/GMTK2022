@@ -35,7 +35,7 @@ func land():
     $AnimatedSprite.play("landing")
     $Shadow.play("landing")
     $LandTimer.start()
-    
+
 
 func seek():
     seeking = true
