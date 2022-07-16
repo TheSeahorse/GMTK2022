@@ -12,7 +12,7 @@ func _process(_delta):
 func set_move_target(target: KinematicBody2D):
     move_target = target
 
-func attack():
+func shoot():
     var p = Projectile.instance()
     var direction = position.direction_to(move_target.position)
     p.set_direction(direction)
@@ -20,4 +20,16 @@ func attack():
     get_parent().add_child(p)
 
 func _on_AttackTimer_timeout():
-    attack()
+    $AnimatedSprite.play("shooting")
+
+
+func _on_AnimatedSprite_frame_changed():
+    print($AnimatedSprite.animation)
+    print($AnimatedSprite.frame)
+    if $AnimatedSprite.animation == "shooting" and $AnimatedSprite.frame == 3:
+        shoot()
+
+
+func _on_AnimatedSprite_animation_finished():
+    if $AnimatedSprite.animation == "shooting":
+        $AnimatedSprite.play("flying")

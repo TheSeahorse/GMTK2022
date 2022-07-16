@@ -4,7 +4,7 @@ var direction: Vector2
 var speed = 600
 
 func _ready():
-    pass # Replace with function body.
+    $AnimatedSprite.play()
 
 func _physics_process(_delta):
     move_and_slide(direction * speed)
