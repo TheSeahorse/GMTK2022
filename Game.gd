@@ -3,6 +3,7 @@ extends Node2D
 onready var Enemy = preload("res://Enemy.tscn")
 onready var Enemy2 = preload("res://Enemy2.tscn")
 onready var Player = preload("res://Player.tscn")
+onready var Dice = preload("res://Dice.tscn")
 
 var GAME_HEIGHT = ProjectSettings.get_setting("display/window/size/height")
 var GAME_WIDTH = ProjectSettings.get_setting("display/window/size/width")
@@ -32,6 +33,7 @@ func add_enemy():
     enemy.set_move_target(player)
     $Enemies.call_deferred("add_child", enemy)
     enemy.set_move_target(player)
+    enemy.connect("died", self, "_enemy_died")
 
 func get_enemy_spawnable_position():
     var x = rng.randi_range(200, 1720)
@@ -52,6 +54,11 @@ func _player_detected_enemy(body):
         player_health -= 1
     else:
         get_tree().change_scene("res://Menu.tscn")
+
+func _enemy_died(position: Vector2):
+    var dice = Dice.instance()
+    dice.position = position
+    add_child(dice)
 
 func _process(_delta):
     pass
