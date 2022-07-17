@@ -2,6 +2,7 @@ extends Area2D
 
 var max_value = 6
 var mouse_over = false
+var holding = false
 var stat_box_over = false
 var stat_box: Area2D = null
 
@@ -9,12 +10,18 @@ func _ready():
     if randi() % 2 == 0:
         $AnimatedSprite.flip_h = true
 
+
 func _process(_delta):
-    if Input.is_mouse_button_pressed(1) and mouse_over:
+    if Input.is_action_just_pressed("left_click") and mouse_over:
+        holding = true
+    if Input.is_action_just_released("left_click") and holding:
+        if stat_box_over:
+            stat_box.update_value(max_value)
+            self.queue_free()
+        else:
+            holding = false
+    if holding:
         self.position = get_viewport().get_mouse_position()
-    if Input.is_action_just_released("left_click") and mouse_over and stat_box_over:
-        stat_box.update_value(max_value)
-        self.queue_free()
 
 
 func _on_Dice_mouse_entered():

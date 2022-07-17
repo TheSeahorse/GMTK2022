@@ -22,6 +22,16 @@ func _ready():
     add_enemy()
 
 
+func _process(_delta):
+    var already_held = false
+    for coin in $Coins.get_children():
+        if coin.holding and already_held:
+            coin.holding = false
+        elif coin.holding:
+            already_held = true
+            
+
+
 func add_enemy():
     var enemyType = rng.randi_range(0, 2)
     var enemy
@@ -68,10 +78,8 @@ func _player_detected_enemy(body):
 func _enemy_died(position: Vector2):
     var dice = Dice.instance()
     dice.position = position
-    add_child(dice)
+    $Coins.call_deferred("add_child", dice)
 
-func _process(_delta):
-    pass
 
 func _on_EnemySpawnTimer_timeout():
     add_enemy()

@@ -1,9 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/board1.png" type="Texture" id=2]
 [ext_resource path="res://Hud.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Backgrounds/board3.png" type="Texture" id=5]
+[ext_resource path="res://assets/Backgrounds/board4.png" type="Texture" id=6]
+[ext_resource path="res://assets/Backgrounds/board2.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "infinite",
+"speed": 5.0
+} ]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,13 +42,18 @@ margin_bottom = 1111.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
-[node name="Background" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Background" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "3"
 centered = false
+
+[node name="Hud" parent="." instance=ExtResource( 3 )]
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="Coins" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -32,13 +63,11 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
 polygon = PoolVector2Array( 88, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 1828, 516, 1822, 312, 1636, 300, 1467, 308, 1259, 312, 944, 314, 657, 310, 373, 310, 219, 322, 90, 310, 36, 328, 30, 118, 56, -9, 2115, 6, 2131, 1224, -331, 1233, -321, 148, 16, 110 )
 
-[node name="Hud" parent="." instance=ExtResource( 3 )]
-
 [node name="GameOverTimer" type="Timer" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource( 4 )]
 offset = Vector2( 960, 540 )
 
-[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="stats_updated" from="Hud" to="." method="_on_Hud_stats_updated"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
