@@ -134,6 +134,10 @@ func attack():
         enemy.die()
 
 func update_cooldown():
+    if not alive:
+        $Cooldown.value = 0
+        return
+
     var total_time = $Cooldown/AttackCooldown.get_wait_time()
     var time_left = $Cooldown/AttackCooldown.get_time_left()
     var percentage = float(time_left/total_time)
