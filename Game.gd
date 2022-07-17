@@ -30,6 +30,7 @@ var wave = 1
 var wave_over = false
 var in_transition = true
 var spawned_first_wave = false
+var current_cursor
 
 func _ready():
     rng.randomize()
@@ -55,9 +56,13 @@ func check_cursor_hold():
         elif coin.holding:
             already_held = true
     if already_held:
-        Input.set_custom_mouse_cursor(CursorHold)
+        if not current_cursor == CursorHold:
+            Input.set_custom_mouse_cursor(CursorHold)
+            current_cursor = CursorHold
     else:
-        Input.set_custom_mouse_cursor(CursorRegular)
+        if not current_cursor == CursorRegular:
+            Input.set_custom_mouse_cursor(CursorRegular)
+            current_cursor = CursorRegular
 
 
 func check_cleared_wave():
