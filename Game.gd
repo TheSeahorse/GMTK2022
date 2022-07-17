@@ -66,7 +66,6 @@ func check_cursor_hold():
 
 
 func check_cleared_wave():
-    print(str($Enemies.get_child_count()))
     if $Enemies.get_child_count() < 1:
         if wave == level:
             level_cleared()
@@ -86,7 +85,6 @@ func level_cleared():
     call_deferred("add_child", goal)
 
 func wave_cleared():
-    print("wave_cleared")
     if wave_over:
         return
     wave_over = true
@@ -102,7 +100,6 @@ func start_level():
     spawned_first_wave = true
 
 func spawn_wave():
-    print("spawn_wave")
     var waves
     match level:
         1:

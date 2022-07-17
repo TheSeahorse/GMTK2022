@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal enemy_detected
 signal death_animation_finished
 
-var move_speed: = 200
+var move_speed: = 150
 var move_speed_modifier: = 0
 var attack_cooldown: float = 2.1
 var attack_modifier = 0
@@ -44,7 +44,7 @@ func _input(event):
 func calculate_movement():
     if not alive:
         return
-    var current_move_speed = move_speed + 60 * move_speed_modifier
+    var current_move_speed = move_speed + 100 * move_speed_modifier
     var direction = get_direction()
     if direction.length() > 1.0:
         direction = direction.normalized()

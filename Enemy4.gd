@@ -52,7 +52,7 @@ func _on_ChargeTimer_timeout():
             counter += 1
     $AnimatedSprite.play(rotational_position + "_idle")
     $SpinTimer.start()
-    $ShootTimer.start(randi() % 2 + 2)
+    $ShootTimer.start(randi() % 2 + 1.5)
 
 
 func _on_SpinTimer_timeout():
