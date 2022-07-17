@@ -1,31 +1,12 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Enemy3.gd" type="Script" id=1]
 [ext_resource path="res://assets/Enemy3/spritesheet44.png" type="Texture" id=2]
 [ext_resource path="res://assets/Enemy3/spritesheet45.png" type="Texture" id=3]
 [ext_resource path="res://assets/Character/death.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sound/fall_and_slam.wav" type="AudioStream" id=5]
 
-[sub_resource type="AtlasTexture" id=19]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 2420, 550, 605 )
-
-[sub_resource type="AtlasTexture" id=20]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 1815, 550, 605 )
-
-[sub_resource type="AtlasTexture" id=21]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 1210, 550, 605 )
-
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 605, 550, 605 )
-
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 550, 605 )
@@ -55,7 +36,27 @@ flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 2420, 550, 605 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 2420, 550, 605 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 1815, 550, 605 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 1210, 550, 605 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 605, 550, 605 )
+
+[sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 550, 605 )
@@ -67,9 +68,9 @@ region = Rect2( 0, 2420, 550, 605 )
 
 [sub_resource type="SpriteFrames" id=17]
 animations = [ {
-"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"frames": [ SubResource( 11 ) ],
 "loop": false,
-"name": "rising",
+"name": "seeking",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
@@ -77,9 +78,9 @@ animations = [ {
 "name": "falling",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ) ],
+"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": false,
-"name": "seeking",
+"name": "rising",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 24 ) ],
@@ -87,16 +88,6 @@ animations = [ {
 "name": "landing",
 "speed": 5.0
 } ]
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 1210, 550, 605 )
-
-[sub_resource type="AtlasTexture" id=9]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 1815, 550, 605 )
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -118,6 +109,16 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 3025, 550, 605 )
 
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 1210, 550, 605 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 1815, 550, 605 )
+
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 2 )
@@ -135,15 +136,15 @@ region = Rect2( 0, 4235, 550, 605 )
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "rising",
-"speed": 6.0
-}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "falling",
 "speed": 8.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "rising",
+"speed": 6.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 6 ) ],
 "loop": true,
@@ -221,7 +222,6 @@ position = Vector2( 0, -1600 )
 scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 10 )
 animation = "landing"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -246,6 +246,9 @@ frames = SubResource( 45 )
 [node name="Death" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 46 )
+
+[node name="Stomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="timeout" from="LandTimer" to="." method="_on_LandTimer_timeout"]
 [connection signal="timeout" from="SeekingTimer" to="." method="_on_SeekingTimer_timeout"]

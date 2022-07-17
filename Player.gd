@@ -158,7 +158,7 @@ func is_player_attacked():
             $DamagedTimer.start()
             $DamagedAnimation.play("damaged")
             emit_signal("enemy_detected", enemies_on_player.front())
-            $DamageTakenStream.play(0.2)
+            $DamageTakenStream.play()
 
 func check_raycast():
     if is_attacking:

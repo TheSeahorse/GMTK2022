@@ -139,8 +139,8 @@ func add_enemy(enemy_type: int):
     enemy.connect("died", self, "_enemy_died")
 
 func get_enemy_spawnable_position():
-    var x = rng.randi_range(120, GAME_WIDTH - 120)
-    var y = rng.randi_range(360, GAME_HEIGHT - 120)
+    var x = rng.randi_range(180, GAME_WIDTH - 180)
+    var y = rng.randi_range(420, GAME_HEIGHT - 180)
     var pos = Vector2(x, y)
     if player.position.distance_to(pos) < 300:
         return get_enemy_spawnable_position()

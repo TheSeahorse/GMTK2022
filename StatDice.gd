@@ -19,7 +19,8 @@ func decrease():
 
 func update_value(max_val: int):
     new_max_value = max_val
-    extra_rolls = 6
+    extra_rolls = 5
+    $Spin.play()
     extra_roll()
 
 
@@ -37,7 +38,7 @@ func extra_roll():
             new = randi() % new_max_value + 1
         $Value.play(str(new))
         extra_rolls -= 1
-        $ExtraRollTimer.start(0.05 * (7 - extra_rolls))
+        $ExtraRollTimer.start(0.04 * (7 - extra_rolls))
 
 
 func _on_ColorTimer_timeout():

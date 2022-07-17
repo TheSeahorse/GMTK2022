@@ -1,24 +1,20 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://assets/Enemy4/spritesheet49.png" type="Texture" id=1]
 [ext_resource path="res://Enemy4.gd" type="Script" id=2]
 [ext_resource path="res://assets/Character/death.png" type="Texture" id=3]
 [ext_resource path="res://assets/Character/spawn.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sound/laser.wav" type="AudioStream" id=5]
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 3630, 550, 605 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 550, 605 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 605, 550, 605 )
+region = Rect2( 0, 1210, 550, 605 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
@@ -60,11 +56,6 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 2420, 550, 605 )
 
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1210, 550, 605 )
-
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 1 )
@@ -75,6 +66,16 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 3025, 550, 605 )
 
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 550, 605 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 605, 550, 605 )
+
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ SubResource( 16 ) ],
@@ -82,10 +83,10 @@ animations = [ {
 "name": "vertical_shoot",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ) ],
-"loop": true,
-"name": "diagonal_idle",
-"speed": 6.0
+"frames": [ SubResource( 5 ) ],
+"loop": false,
+"name": "diagonal_shoot",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": false,
@@ -97,14 +98,14 @@ animations = [ {
 "name": "spin_vertical",
 "speed": 6.0
 }, {
-"frames": [ SubResource( 5 ) ],
-"loop": false,
-"name": "diagonal_shoot",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
 "name": "vertical_idle",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "diagonal_idle",
 "speed": 6.0
 } ]
 
@@ -287,6 +288,9 @@ frames = SubResource( 45 )
 [node name="Death" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 54 )
+
+[node name="Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

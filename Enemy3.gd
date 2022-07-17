@@ -29,6 +29,7 @@ func _physics_process(_delta):
 
 
 func fall():
+    $Stomp.play()
     $Tween.interpolate_property($AnimatedSprite, "position", null, $Shadow.position, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
     $Tween.start()
     $AnimatedSprite.play("falling")
