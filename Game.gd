@@ -43,6 +43,7 @@ func _ready():
 
 
 func _physics_process(_delta):
+    move_eyes()
     if not in_transition and spawned_first_wave:
         check_cursor_hold()
         check_cleared_wave()
@@ -71,6 +72,14 @@ func check_cleared_wave():
             level_cleared()
         else:
             wave_cleared()
+
+func move_eyes():
+    if player.position.x < 660:
+        $Eyes.play("left")
+    elif player.position.x < 1320:
+        $Eyes.play("middle")
+    else:
+        $Eyes.play("right")
 
 func level_cleared():
     if lev_clear:

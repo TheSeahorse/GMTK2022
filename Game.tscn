@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/board1.png" type="Texture" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://assets/Sound/theme_5.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/Sound/theme_4.mp3" type="AudioStream" id=16]
 [ext_resource path="res://assets/Sound/win.mp3" type="AudioStream" id=17]
+[ext_resource path="res://assets/eyes_left.png" type="Texture" id=18]
+[ext_resource path="res://assets/eyes_right.png" type="Texture" id=19]
+[ext_resource path="res://assets/eyes.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -48,6 +51,24 @@ animations = [ {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "4",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "middle",
 "speed": 5.0
 } ]
 
@@ -446,6 +467,11 @@ color = Color( 0, 0, 0, 1 )
 [node name="Background" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "0"
+centered = false
+
+[node name="Eyes" type="AnimatedSprite" parent="."]
+frames = SubResource( 8 )
+animation = "right"
 centered = false
 
 [node name="Hud" parent="." instance=ExtResource( 3 )]

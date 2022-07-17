@@ -11,7 +11,7 @@ func _on_StartButton_pressed():
     get_tree().change_scene("res://Game.tscn")
 
 func _on_HowToPlayButton_pressed():
-    $Logo.show()
+    $Logo.hide()
     $Buttons.hide()
     $HowToPlay/AnimationPlayer.play("coin_move")
     $HowToPlay.show()
