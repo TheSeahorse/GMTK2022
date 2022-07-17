@@ -57,7 +57,6 @@ extents = Vector2( 162.5, 195 )
 [node name="Enemy1" type="KinematicBody2D"]
 scale = Vector2( 0.2, 0.2 )
 collision_layer = 4
-collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -65,5 +64,4 @@ frames = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 7.5, 20 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 11 )

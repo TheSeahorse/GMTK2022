@@ -12,6 +12,7 @@ var friction: float
 
 var can_attack = true
 var is_attacking = false
+var is_damaged: bool = false
 var enemies_in_range = []
 
 var pushed = false
@@ -145,6 +146,11 @@ func update_cooldown():
 
 
 func _on_EnemyDetector_body_entered(body):
+    if is_damaged:
+        return
+    is_damaged = true
+    $DamagedTimer.start()
+    $DamagedAnimation.play("damaged")
     emit_signal("enemy_detected", body)
 
 
@@ -179,3 +185,8 @@ func _on_Sprite_animation_finished():
     if $Sprite.get_animation() == "death":
         $Sprite.stop()
         emit_signal("death_animation_finished")
+
+
+func _on_DamagedTimer_timeout():
+    is_damaged = false
+    $DamagedAnimation.play("RESET")

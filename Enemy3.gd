@@ -38,7 +38,7 @@ func land():
     $Shadow.play("landing")
     $LandTimer.start()
     emit_signal("shake", 500)
-    
+
 
 func seek():
     seeking = true
