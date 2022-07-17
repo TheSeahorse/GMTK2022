@@ -1,15 +1,124 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/menu_quit.png" type="Texture" id=2]
 [ext_resource path="res://assets/Backgrounds/menu_background.png" type="Texture" id=3]
 [ext_resource path="res://assets/Backgrounds/menu_how_to_play.png" type="Texture" id=4]
 [ext_resource path="res://assets/Backgrounds/menu_start.png" type="Texture" id=5]
+[ext_resource path="res://assets/HUD/slot_background.png" type="Texture" id=6]
+[ext_resource path="res://assets/Backgrounds/how_to_play_text2.png" type="Texture" id=7]
+[ext_resource path="res://assets/HUD/coin.png" type="Texture" id=8]
+[ext_resource path="res://assets/HUD/Slots.png" type="Texture" id=9]
+[ext_resource path="res://assets/HUD/one.png" type="Texture" id=10]
+[ext_resource path="res://assets/HUD/cursor_reg.png" type="Texture" id=11]
+[ext_resource path="res://assets/HUD/seven.png" type="Texture" id=12]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 5.5, 11.3027, 187.588, 144.629 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cursor:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1215, 945 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Coin:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1211, 175 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "coin_move"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Coin:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1117, 883 ), Vector2( 1117, 883 ), Vector2( 1211, 175 ), Vector2( 1211, 175 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Cursor:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1504, 380 ), Vector2( 1215, 945 ), Vector2( 1276, 222 ), Vector2( 1276, 222 ), Vector2( 1490, 442 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Coin:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpeedNumber1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpeedNumber2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
 
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -42,4 +151,78 @@ margin_right = 691.0
 margin_bottom = 574.0
 texture_normal = ExtResource( 2 )
 
+[node name="HowToPlay" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HowToPlayTexture" type="TextureButton" parent="HowToPlay"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 7 )
+
+[node name="SlotMachineBackground" type="TextureRect" parent="HowToPlay"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+mouse_filter = 2
+texture = ExtResource( 6 )
+
+[node name="SlotMachine" type="TextureRect" parent="HowToPlay"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 9 )
+
+[node name="HealthNumber" type="TextureRect" parent="HowToPlay"]
+margin_left = 556.0
+margin_top = 145.0
+margin_right = 703.0
+margin_bottom = 313.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+
+[node name="PowerNumber" type="TextureRect" parent="HowToPlay"]
+margin_left = 890.0
+margin_top = 145.0
+margin_right = 1037.0
+margin_bottom = 313.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+
+[node name="SpeedNumber1" type="TextureRect" parent="HowToPlay"]
+margin_left = 1206.0
+margin_top = 145.0
+margin_right = 1353.0
+margin_bottom = 313.0
+mouse_filter = 2
+texture = ExtResource( 10 )
+
+[node name="SpeedNumber2" type="TextureRect" parent="HowToPlay"]
+visible = false
+margin_left = 1206.0
+margin_top = 145.0
+margin_right = 1353.0
+margin_bottom = 313.0
+mouse_filter = 2
+texture = ExtResource( 12 )
+
+[node name="Coin" type="TextureRect" parent="HowToPlay"]
+margin_left = 1211.0
+margin_top = 175.0
+margin_right = 1398.0
+margin_bottom = 319.002
+texture = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HowToPlay"]
+anims/RESET = SubResource( 2 )
+anims/coin_move = SubResource( 3 )
+
+[node name="Cursor" type="TextureRect" parent="HowToPlay"]
+margin_left = 1215.0
+margin_top = 945.0
+margin_right = 1471.0
+margin_bottom = 1201.02
+texture = ExtResource( 11 )
+
 [connection signal="pressed" from="Buttons/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Buttons/HowToPlayButton" to="." method="_on_HowToPlayButton_pressed"]
+[connection signal="pressed" from="HowToPlay/HowToPlayTexture" to="." method="_on_HowToPlayTexture_pressed"]
