@@ -64,13 +64,10 @@ texture = ExtResource( 7 )
 [node name="WinWinWin" type="AnimatedSprite" parent="."]
 position = Vector2( 960, -240 )
 frames = SubResource( 1 )
-playing = true
 
 [node name="Player" type="AnimatedSprite" parent="."]
 position = Vector2( 924, 553 )
 frames = SubResource( 2 )
-frame = 1
-playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "victory"
