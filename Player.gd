@@ -6,7 +6,7 @@ signal death_animation_finished
 var move_speed: = 200
 var move_speed_modifier: = 0
 var attack_cooldown: float = 2.1
-var attack_cooldown_modifier = 0
+var attack_modifier = 0
 var velocity = Vector2.ZERO
 var friction: float
 
@@ -173,7 +173,8 @@ func _on_EnemyDetector_body_exited(body):
     enemies_on_player.erase(body)
 
 func set_attack_modifier(mod):
-    attack_cooldown_modifier = mod
+    attack_modifier = mod
+    $Weapon.scale = Vector2(1 + 0.3 * mod, 1 + 0.3 * mod)
 
 func set_movement_modifier(mod):
     move_speed_modifier = mod
@@ -184,7 +185,7 @@ func play_death_animation():
 
 func _on_AttackCooldown_timeout():
     can_attack = true
-    $Cooldown/AttackCooldown.wait_time = attack_cooldown - 0.3 * attack_cooldown_modifier
+    $Cooldown/AttackCooldown.wait_time = attack_cooldown
 
 func _on_AttackLength_timeout():
     is_attacking = false
