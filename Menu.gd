@@ -17,3 +17,7 @@ func _on_HowToPlayTexture_pressed():
     $HowToPlay.hide()
     $HowToPlay/AnimationPlayer.play("RESET")
     $Buttons.show()
+
+
+func _on_QuitButton_pressed():
+    $Buttons/QuitButton.hide()

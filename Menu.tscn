@@ -225,4 +225,5 @@ texture = ExtResource( 11 )
 
 [connection signal="pressed" from="Buttons/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="Buttons/HowToPlayButton" to="." method="_on_HowToPlayButton_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="HowToPlay/HowToPlayTexture" to="." method="_on_HowToPlayTexture_pressed"]
