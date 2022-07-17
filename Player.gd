@@ -134,6 +134,7 @@ func attack():
     $Weapon/AttackLength.start()
     $Cooldown/AttackCooldown.start()
     $Weapon/AnimationPlayer.play("swing")
+    $AttackStream.play(0.25)
     can_attack = false
     is_attacking = true
     for enemy in enemies_in_range:
