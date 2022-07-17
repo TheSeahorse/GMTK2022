@@ -21,6 +21,7 @@ var alive = true
 
 func _ready():
     friction = float(move_speed)/5000
+    $Weapon.hide()
 
 
 func _process(_delta):
@@ -32,6 +33,7 @@ func _physics_process(_delta):
     calculate_movement()
     rotate_player_towards_mouse()
     is_player_attacked()
+    check_raycast()
 
 
 func _input(event):
@@ -156,6 +158,13 @@ func is_player_attacked():
             $DamagedAnimation.play("damaged")
             emit_signal("enemy_detected", enemies_on_player.front())
             $DamageTakenStream.play(0.2)
+
+func check_raycast():
+    if is_attacking:
+        $Weapon/WeaponArea/RayCast2D.force_raycast_update()
+        if $Weapon/WeaponArea/RayCast2D.is_colliding():
+            var collider = $Weapon/WeaponArea/RayCast2D.get_collider()
+            collider.die()
 
 func _on_EnemyDetector_body_entered(body):
     enemies_on_player.append(body)

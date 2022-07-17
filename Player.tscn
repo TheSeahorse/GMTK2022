@@ -11,41 +11,6 @@
 [ext_resource path="res://assets/Character/hurt_1.mp3" type="AudioStream" id=9]
 [ext_resource path="res://assets/Character/briefcase_2.png" type="Texture" id=10]
 
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 642, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1284, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=6]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1926, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=7]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 2568, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=8]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 3210, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=30]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 402, 642 )
-
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
 atlas = ExtResource( 5 )
@@ -81,6 +46,36 @@ flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 3210, 402, 642 )
 
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 642, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 1284, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 1926, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 2568, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 3210, 402, 642 )
+
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 5 )
@@ -111,40 +106,45 @@ flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 0, 3210, 402, 642 )
 
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 642, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1284, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1926, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 2568, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 3210, 402, 642 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 402, 642 )
+
 [sub_resource type="AtlasTexture" id=31]
 flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=24]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=25]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 642, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=26]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 1284, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=27]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 1926, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=28]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 2568, 402, 642 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 3210, 402, 642 )
 
 [sub_resource type="AtlasTexture" id=34]
 flags = 4
@@ -188,16 +188,6 @@ region = Rect2( 0, 0, 402, 642 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "move_down",
-"speed": 12.0
-}, {
-"frames": [ SubResource( 30 ) ],
-"loop": true,
-"name": "idle_right",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 32 ) ],
 "loop": true,
 "name": "idle_up",
@@ -208,20 +198,30 @@ animations = [ {
 "name": "move_left",
 "speed": 12.0
 }, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "move_right",
+"speed": 12.0
+}, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
 "loop": true,
 "name": "move_up",
 "speed": 12.0
 }, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "move_down",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 30 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 31 ) ],
 "loop": true,
 "name": "idle_left",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
-"loop": true,
-"name": "move_right",
-"speed": 12.0
 }, {
 "frames": [ null, SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
 "loop": true,
@@ -294,6 +294,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [ "start", "swing", "swing" ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("WeaponArea:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.03, 0.1, 0.17, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 45.0, 45.0, 0.0, -40.0, -40.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("WeaponArea/RayCast2D:cast_to")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 160 ), Vector2( 0, 140 ), Vector2( 0, 160 ) ]
+}
 
 [sub_resource type="Animation" id=42]
 resource_name = "RESET"
@@ -347,16 +371,11 @@ collision_mask = 12
 [node name="EnemyDetectorShape" type="CollisionShape2D" parent="EnemyDetector"]
 shape = SubResource( 33 )
 
-[node name="Weapon" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon"]
-polygon = PoolVector2Array( 0, 0, 203, -88, 222, -43, 227, 0, 221, 48, 203, 87 )
+[node name="Weapon" type="Node2D" parent="."]
 
 [node name="Briefcase" type="AnimatedSprite" parent="Weapon"]
-position = Vector2( 106, -70 )
-rotation = 1.20428
+position = Vector2( 100, -100 )
+rotation = 1.0472
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 43 )
 animation = "swing"
@@ -368,6 +387,16 @@ one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
 anims/swing = SubResource( 44 )
+
+[node name="WeaponArea" type="Node2D" parent="Weapon"]
+rotation = -0.698132
+
+[node name="RayCast2D" type="RayCast2D" parent="Weapon/WeaponArea"]
+rotation = -1.5708
+scale = Vector2( 1, 1 )
+enabled = true
+cast_to = Vector2( 0, 160 )
+collision_mask = 4
 
 [node name="Cooldown" type="TextureProgress" parent="."]
 margin_left = -51.0
@@ -393,8 +422,6 @@ stream = ExtResource( 9 )
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="body_exited" from="EnemyDetector" to="." method="_on_EnemyDetector_body_exited"]
-[connection signal="body_entered" from="Weapon" to="." method="_on_Weapon_body_entered"]
-[connection signal="body_exited" from="Weapon" to="." method="_on_Weapon_body_exited"]
 [connection signal="timeout" from="Weapon/AttackLength" to="." method="_on_AttackLength_timeout"]
 [connection signal="timeout" from="Cooldown/AttackCooldown" to="." method="_on_AttackCooldown_timeout"]
 [connection signal="timeout" from="DamagedTimer" to="." method="_on_DamagedTimer_timeout"]
