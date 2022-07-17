@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/HUD/dice3.png" type="Texture" id=1]
-[ext_resource path="res://assets/HUD/dice4.png" type="Texture" id=2]
-[ext_resource path="res://assets/HUD/dice5.png" type="Texture" id=3]
-[ext_resource path="res://assets/HUD/dice6.png" type="Texture" id=4]
-[ext_resource path="res://assets/HUD/dice1.png" type="Texture" id=5]
-[ext_resource path="res://assets/HUD/dice2.png" type="Texture" id=6]
-[ext_resource path="res://assets/HUD/statholder.png" type="Texture" id=7]
+[ext_resource path="res://assets/HUD/six.png" type="Texture" id=1]
+[ext_resource path="res://assets/HUD/five.png" type="Texture" id=2]
+[ext_resource path="res://assets/HUD/one.png" type="Texture" id=3]
+[ext_resource path="res://assets/HUD/three.png" type="Texture" id=4]
+[ext_resource path="res://assets/HUD/slot_background_solo.png" type="Texture" id=5]
+[ext_resource path="res://assets/HUD/two.png" type="Texture" id=6]
+[ext_resource path="res://assets/HUD/four.png" type="Texture" id=7]
 [ext_resource path="res://StatDice.gd" type="Script" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -16,34 +16,34 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "6",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "3",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "1",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "6",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "4",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 67, 65 )
+extents = Vector2( 87.5, 90.5 )
 
 [node name="StatDice" type="Area2D"]
 collision_layer = 32
@@ -52,23 +52,18 @@ script = ExtResource( 8 )
 
 [node name="ColorTimer" type="Timer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-margin_left = -73.0
-margin_top = -73.0
-margin_right = 72.0
-margin_bottom = 69.0
-mouse_filter = 2
-color = Color( 0.690196, 0.619608, 0.0313726, 1 )
-
 [node name="Outline" type="Sprite" parent="."]
-texture = ExtResource( 7 )
+scale = Vector2( 1.05, 1.05 )
+texture = ExtResource( 5 )
 
 [node name="Value" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 10 )
 frames = SubResource( 1 )
 animation = "1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1.5, -0.5 )
 shape = SubResource( 2 )
 
 [node name="ExtraRollTimer" type="Timer" parent="."]

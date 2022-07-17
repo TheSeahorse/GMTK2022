@@ -5,6 +5,10 @@ var mouse_over = false
 var stat_box_over = false
 var stat_box: Area2D = null
 
+func _ready():
+    if randi() % 2 == 0:
+        $AnimatedSprite.flip_h = true
+
 func _process(_delta):
     if Input.is_mouse_button_pressed(1) and mouse_over:
         self.position = get_viewport().get_mouse_position()
@@ -13,15 +17,7 @@ func _process(_delta):
         self.queue_free()
 
 
-func _on_ChangeValueTimer_timeout():
-    var new_value = randi() % max_value + 1
-    while new_value == int($AnimatedSprite.get_animation()):
-        new_value = randi() % max_value + 1
-    $AnimatedSprite.play(str(new_value))
-
-
 func _on_Dice_mouse_entered():
-    print("over")
     mouse_over = true
 
 

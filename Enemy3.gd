@@ -13,7 +13,7 @@ func _ready():
 
 func _physics_process(_delta):
     if seeking:
-        if position.distance_to(move_target.position) < 5:
+        if position.distance_to(move_target.position) < 10:
             seeking = false
             $SeekingTimer.stop()
             fall()

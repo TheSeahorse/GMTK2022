@@ -18,7 +18,8 @@ func extra_roll():
     if extra_rolls == 0:
         value = randi() % new_max_value + 1
         $Value.play(str(value))
-        $ColorRect.show()
+        $Outline.modulate = Color8(255,255,0,255)
+        $Value.modulate = Color8(255,150,0,255)
         $ColorTimer.start()
         emit_signal("updated")
     else:
@@ -31,4 +32,5 @@ func extra_roll():
 
 
 func _on_ColorTimer_timeout():
-    $ColorRect.hide()
+    $Outline.modulate = Color8(255,255,255,255)
+    $Value.modulate = Color8(255,255,255,255)
