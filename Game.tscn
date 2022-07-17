@@ -50,7 +50,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Background" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "5"
+animation = "3"
 centered = false
 
 [node name="Hud" parent="." instance=ExtResource( 3 )]
@@ -65,6 +65,7 @@ centered = false
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+visible = false
 polygon = PoolVector2Array( 88, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 1828, 516, 1822, 312, 1636, 300, 1467, 308, 1259, 312, 944, 314, 657, 310, 373, 310, 219, 322, 90, 310, 36, 328, 30, 118, 56, -9, 2115, 6, 2131, 1224, -331, 1233, -321, 148, 16, 110 )
 
 [node name="GameOverTimer" type="Timer" parent="."]

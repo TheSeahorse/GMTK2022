@@ -3,10 +3,12 @@ extends Node2D
 onready var Enemy = preload("res://Enemy.tscn")
 onready var Enemy2 = preload("res://Enemy2.tscn")
 onready var Enemy3 = preload("res://Enemy3.tscn")
+onready var Enemy4 = preload("res://Enemy4.tscn")
 onready var Player = preload("res://Player.tscn")
 onready var Dice = preload("res://Dice.tscn")
 onready var Goal = preload("res://Goal.tscn")
 onready var Projectile2 = preload("res://Enemy2Projectile.tscn")
+onready var Projectile4 = preload("res://Enemy4Projectile.tscn")
 
 onready var CursorHold = preload("res://assets/HUD/cursor_hold_small.png")
 onready var CursorRegular = preload("res://assets/HUD/cursor_reg_small.png")
@@ -115,9 +117,12 @@ func add_enemy(enemy_type: int):
     if enemy_type == 2:
         enemy = Enemy2.instance()
         enemy.connect("shoot",self,"_spawn_enemy_two_projectile")
-    if enemy_type == 3 or enemy_type == 4:
+    if enemy_type == 3:
         enemy = Enemy3.instance()
         enemy.connect("shake", self, "_camera_shake")
+    if enemy_type == 4:
+        enemy = Enemy4.instance()
+        enemy.connect("shoot", self, "_spawn_enemy_four_projectile")
 
     enemy.position = get_enemy_spawnable_position()
     enemy.set_move_target(player)
@@ -126,8 +131,8 @@ func add_enemy(enemy_type: int):
     enemy.connect("died", self, "_enemy_died")
 
 func get_enemy_spawnable_position():
-    var x = rng.randi_range(80, GAME_WIDTH - 92)
-    var y = rng.randi_range(320, GAME_HEIGHT - 96)
+    var x = rng.randi_range(120, GAME_WIDTH - 120)
+    var y = rng.randi_range(360, GAME_HEIGHT - 120)
     var pos = Vector2(x, y)
     if player.position.distance_to(pos) < 300:
         return get_enemy_spawnable_position()
@@ -138,6 +143,10 @@ func _camera_shake(amount, time=0.6, limit=1000):
     $Camera.shake(amount, time, limit)
 
 func _entered_goal(goal):
+    for p in $Projectiles.get_children():
+        p.queue_free()
+    for c in $Coins.get_children():
+        c.queue_free()
     goal.queue_free()
     level += 1
     start_level()
@@ -174,6 +183,12 @@ func _on_GameOverTimer_timeout():
 
 func _spawn_enemy_two_projectile(pos: Vector2, direction: Vector2):
     var p = Projectile2.instance()
+    p.position = pos
+    p.set_direction(direction)
+    $Projectiles.call_deferred("add_child", p)
+
+func _spawn_enemy_four_projectile(pos: Vector2, direction: Vector2):
+    var p = Projectile4.instance()
     p.position = pos
     p.set_direction(direction)
     $Projectiles.call_deferred("add_child", p)

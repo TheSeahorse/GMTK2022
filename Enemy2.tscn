@@ -67,7 +67,7 @@ animations = [ {
 extents = Vector2( 160, 197.5 )
 
 [node name="Enemy2" type="KinematicBody2D"]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 collision_layer = 4
 script = ExtResource( 2 )
 
