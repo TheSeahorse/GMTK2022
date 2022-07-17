@@ -131,6 +131,7 @@ func attack():
     $Weapon.show()
     $Weapon/AttackLength.start()
     $Cooldown/AttackCooldown.start()
+    $Weapon/AnimationPlayer.play("swing")
     can_attack = false
     is_attacking = true
     for enemy in enemies_in_range:
@@ -179,6 +180,7 @@ func _on_AttackCooldown_timeout():
 func _on_AttackLength_timeout():
     is_attacking = false
     $Weapon.hide()
+    $Weapon/AnimationPlayer.stop()
 
 
 func _on_Weapon_body_entered(body):
