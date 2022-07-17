@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/board1.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/Backgrounds/board3.png" type="Texture" id=5]
 [ext_resource path="res://assets/Backgrounds/board4.png" type="Texture" id=6]
 [ext_resource path="res://assets/Backgrounds/board2.png" type="Texture" id=7]
+[ext_resource path="res://assets/Backgrounds/board5.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,14 +16,19 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "4",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "infinite",
+"name": "5",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -44,18 +50,16 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Background" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "3"
+animation = "5"
 centered = false
 
 [node name="Hud" parent="." instance=ExtResource( 3 )]
 
-[node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Walls" type="StaticBody2D" parent="."]
 collision_mask = 0
@@ -69,5 +73,4 @@ polygon = PoolVector2Array( 88, 328, 82, 1002, 1832, 986, 1838, 832, 1834, 556, 
 offset = Vector2( 960, 540 )
 
 [connection signal="stats_updated" from="Hud" to="." method="_on_Hud_stats_updated"]
-[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_EnemySpawnTimer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]

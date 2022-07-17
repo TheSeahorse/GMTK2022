@@ -5,6 +5,8 @@ onready var Enemy2 = preload("res://Enemy2.tscn")
 onready var Enemy3 = preload("res://Enemy3.tscn")
 onready var Player = preload("res://Player.tscn")
 onready var Dice = preload("res://Dice.tscn")
+onready var Goal = preload("res://Goal.tscn")
+onready var Projectile2 = preload("res://Enemy2Projectile.tscn")
 
 onready var CursorHold = preload("res://assets/HUD/cursor_hold_small.png")
 onready var CursorRegular = preload("res://assets/HUD/cursor_reg_small.png")
@@ -16,17 +18,31 @@ var rng = RandomNumberGenerator.new()
 var player
 var player_health = 1
 var level = 1
+var lev_clear = false
+var level1 = [[1]]
+var level2 = [[2],[1,1,2]]
+var level3 = [[3],[2,2,3],[1,2,3,3]]
+var level4 = [[4],[1,3,4],[4,4,4],[1,2,3,4]]
+var level5 = [[1,1,1],[2,2,2],[3,3,3],[4,4,4],[1,1,2,2,3,3,4,4]]
+var wave = 1
+var wave_over = false
 
 func _ready():
     rng.randomize()
     player = Player.instance()
     player.position = Vector2(400,400)
     player.connect("enemy_detected", self, "_player_detected_enemy")
+    player.z_index = 1
     add_child(player)
-    add_enemy()
+    start_level()
 
 
 func _process(_delta):
+    check_cursor_hold()
+    check_cleared_wave()
+
+
+func check_cursor_hold():
     var already_held = false
     for coin in $Coins.get_children():
         if coin.holding and already_held:
@@ -38,14 +54,68 @@ func _process(_delta):
     else:
         Input.set_custom_mouse_cursor(CursorRegular)
 
-func add_enemy():
-    var enemyType = rng.randi_range(0, 2)
+
+func check_cleared_wave():
+    print(str($Enemies.get_child_count()))
+    if $Enemies.get_child_count() < 1:
+        if wave == level:
+            level_cleared()
+        else:
+            wave_cleared()
+
+func level_cleared():
+    print("level_cleared")
+    if lev_clear:
+        return
+    lev_clear = true
+    var goal = Goal.instance()
+    var pos = get_enemy_spawnable_position()
+    goal.position = pos
+    goal.connect("player_entered", self, "_entered_goal", [goal])
+    call_deferred("add_child", goal)
+
+func wave_cleared():
+    print("wave_cleared")
+    if wave_over:
+        return
+    wave_over = true
+    wave += 1
+    spawn_wave()
+
+func start_level():
+    lev_clear = false
+    wave_over = false
+    wave = 1
+    $Background.play(str(level))
+    spawn_wave()
+    
+func spawn_wave():
+    print("spawn_wave")
+    var waves
+    match level:
+        1:
+            waves = level1
+        2:
+            waves = level2
+        3:
+            waves = level3
+        4:
+            waves = level4
+        5:
+            waves = level5    
+    for enemy in waves[wave-1]:
+        add_enemy(enemy)
+    wave_over = false
+
+
+func add_enemy(enemy_type: int):
     var enemy
-    if enemyType == 0:
+    if enemy_type == 1:
         enemy = Enemy.instance()
-    if enemyType == 1:
+    if enemy_type == 2:
         enemy = Enemy2.instance()
-    if enemyType == 2:
+        enemy.connect("shoot",self,"_spawn_enemy_two_projectile")
+    if enemy_type == 3 or enemy_type == 4:
         enemy = Enemy3.instance()
         enemy.connect("shake", self, "_camera_shake")
 
@@ -67,6 +137,11 @@ func get_enemy_spawnable_position():
 func _camera_shake(amount, time=0.6, limit=1000):
     $Camera.shake(amount, time, limit)
 
+func _entered_goal(goal):
+    goal.queue_free()
+    level += 1
+    start_level()
+
 func _player_detected_enemy(body):
     var layer = body.get_collision_layer()
     if layer == 8: # Projectile
@@ -87,10 +162,6 @@ func _enemy_died(position: Vector2):
     $Coins.call_deferred("add_child", dice)
 
 
-func _on_EnemySpawnTimer_timeout():
-    add_enemy()
-
-
 func _on_Hud_stats_updated():
     player_health = $Hud.get_health_stat()
     player.set_movement_modifier($Hud.get_speed_stat())
@@ -99,3 +170,10 @@ func _on_Hud_stats_updated():
 
 func _on_GameOverTimer_timeout():
     get_tree().change_scene("res://Menu.tscn")
+
+
+func _spawn_enemy_two_projectile(pos: Vector2, direction: Vector2):
+    var p = Projectile2.instance()
+    p.position = pos
+    p.set_direction(direction)
+    $Projectiles.call_deferred("add_child", p)
