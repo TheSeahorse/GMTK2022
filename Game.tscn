@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/board1.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/Sound/theme_2.mp3" type="AudioStream" id=14]
 [ext_resource path="res://assets/Sound/theme_5.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/Sound/theme_4.mp3" type="AudioStream" id=16]
+[ext_resource path="res://assets/Sound/win.mp3" type="AudioStream" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -508,6 +509,9 @@ stream = ExtResource( 16 )
 
 [node name="Level5" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 15 )
+
+[node name="Win" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 17 )
 
 [node name="Tween" type="Tween" parent="Music"]
 
