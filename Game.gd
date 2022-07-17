@@ -77,6 +77,8 @@ func level_cleared():
     if lev_clear:
         return
     lev_clear = true
+    if level == 5:
+        get_tree().change_scene("res://Victory.tscn")
     var goal = Goal.instance()
     var pos = get_enemy_spawnable_position()
     goal.position = pos

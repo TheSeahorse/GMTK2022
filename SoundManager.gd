@@ -22,6 +22,6 @@ func play_menu_music():
 func stop_menu_music():
     fade_out($MenuMusic)
 
-func _on_FadeOut_tween_completed(object, key):
+func _on_FadeOut_tween_completed(object, _key):
     if object is AudioStreamPlayer:
         object.stop()

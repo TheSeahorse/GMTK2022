@@ -1,0 +1,86 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/Character/character_victory_3.png" type="Texture" id=1]
+[ext_resource path="res://assets/Character/character_victory_4.png" type="Texture" id=2]
+[ext_resource path="res://assets/Character/character_victory_5.png" type="Texture" id=3]
+[ext_resource path="res://assets/win_win_win_3.png" type="Texture" id=4]
+[ext_resource path="res://assets/Character/character_victory_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/win_win_win_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/Backgrounds/menu_background_clean.png" type="Texture" id=7]
+[ext_resource path="res://assets/Character/character_victory_2.png" type="Texture" id=8]
+[ext_resource path="res://assets/win_win_win_1.png" type="Texture" id=9]
+[ext_resource path="res://Victory.gd" type="Script" id=10]
+[ext_resource path="res://assets/Sound/win.mp3" type="AudioStream" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "victory"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("WinWinWin:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 960, -240 ), Vector2( 960, 750 ) ]
+}
+
+[node name="Victory" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="WinWinWin" type="AnimatedSprite" parent="."]
+position = Vector2( 960, -240 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 924, 553 )
+frames = SubResource( 2 )
+frame = 3
+playing = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "victory"
+anims/victory = SubResource( 3 )
+
+[node name="CoinTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+autoplay = true
+
+[connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]
