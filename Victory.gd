@@ -7,6 +7,8 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
     rng.randomize()
+    $WinWinWin.play("default")
+    $Player.play("default")
 
 func _on_CoinTimer_timeout():
     var rndX = rng.randi_range(0, GAME_WIDTH)
