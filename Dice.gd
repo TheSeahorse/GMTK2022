@@ -1,6 +1,6 @@
 extends Area2D
 
-var max_value = 6
+var max_value = 7
 var mouse_over = false
 var holding = false
 var stat_box_over = false
