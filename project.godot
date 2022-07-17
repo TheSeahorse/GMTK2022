@@ -20,6 +20,8 @@ window/size/height=1080
 window/size/resizable=false
 window/size/test_width=1280
 window/size/test_height=720
+mouse_cursor/custom_image="res://assets/HUD/cursor_reg_small.png"
+mouse_cursor/custom_image_hotspot=Vector2( 1, 1 )
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 

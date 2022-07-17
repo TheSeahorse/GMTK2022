@@ -6,12 +6,16 @@ onready var Enemy3 = preload("res://Enemy3.tscn")
 onready var Player = preload("res://Player.tscn")
 onready var Dice = preload("res://Dice.tscn")
 
+onready var CursorHold = preload("res://assets/HUD/cursor_hold_small.png")
+onready var CursorRegular = preload("res://assets/HUD/cursor_reg_small.png")
+
 var GAME_HEIGHT = ProjectSettings.get_setting("display/window/size/height")
 var GAME_WIDTH = ProjectSettings.get_setting("display/window/size/width")
 
 var rng = RandomNumberGenerator.new()
 var player
 var player_health = 1
+var level = 1
 
 func _ready():
     rng.randomize()
@@ -29,8 +33,10 @@ func _process(_delta):
             coin.holding = false
         elif coin.holding:
             already_held = true
-            
-
+    if already_held:
+        Input.set_custom_mouse_cursor(CursorHold)
+    else:
+        Input.set_custom_mouse_cursor(CursorRegular)
 
 func add_enemy():
     var enemyType = rng.randi_range(0, 2)
