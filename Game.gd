@@ -160,6 +160,7 @@ func _player_detected_enemy(body):
         player.push(body.position.direction_to(player.position), 5)
     if player_health > 1:
         player_health -= 1
+        $Hud.decrease_all()
     else:
         player.play_death_animation()
         $GameOverTimer.start()
