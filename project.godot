@@ -13,6 +13,10 @@ config_version=4
 config/name="GMTK2022"
 run/main_scene="res://Main.tscn"
 
+[autoload]
+
+SoundManager="*res://SoundManager.tscn"
+
 [display]
 
 window/size/width=1920
