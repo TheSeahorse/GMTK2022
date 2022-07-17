@@ -327,6 +327,7 @@ anims/damaged = SubResource( 41 )
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
+[connection signal="body_exited" from="EnemyDetector" to="." method="_on_EnemyDetector_body_exited"]
 [connection signal="body_entered" from="Weapon" to="." method="_on_Weapon_body_entered"]
 [connection signal="body_exited" from="Weapon" to="." method="_on_Weapon_body_exited"]
 [connection signal="timeout" from="Weapon/AttackLength" to="." method="_on_AttackLength_timeout"]

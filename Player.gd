@@ -14,6 +14,7 @@ var can_attack = true
 var is_attacking = false
 var is_damaged: bool = false
 var enemies_in_range = []
+var enemies_on_player = []
 
 var pushed = false
 var alive = true
@@ -30,6 +31,7 @@ func _process(_delta):
 func _physics_process(_delta):
     calculate_movement()
     rotate_player_towards_mouse()
+    is_player_attacked()
 
 
 func _input(event):
@@ -145,13 +147,19 @@ func update_cooldown():
     $Cooldown.value = percentage * 100
 
 
+func is_player_attacked():
+    if not is_damaged:
+        if not enemies_on_player.empty():
+            is_damaged = true
+            $DamagedTimer.start()
+            $DamagedAnimation.play("damaged")
+            emit_signal("enemy_detected", enemies_on_player.front())
+
 func _on_EnemyDetector_body_entered(body):
-    if is_damaged:
-        return
-    is_damaged = true
-    $DamagedTimer.start()
-    $DamagedAnimation.play("damaged")
-    emit_signal("enemy_detected", body)
+    enemies_on_player.append(body)
+
+func _on_EnemyDetector_body_exited(body):
+    enemies_on_player.erase(body)
 
 
 func set_attack_modifier(mod):
