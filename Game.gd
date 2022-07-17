@@ -28,6 +28,8 @@ var level4 = [[4],[1,3,4],[4,4,4],[1,2,3,4]]
 var level5 = [[1,1,1],[2,2,2],[3,3,3],[4,4,4],[1,1,2,2,3,3,4,4]]
 var wave = 1
 var wave_over = false
+var in_transition = true
+var spawned_first_wave = false
 
 func _ready():
     rng.randomize()
@@ -36,12 +38,13 @@ func _ready():
     player.connect("enemy_detected", self, "_player_detected_enemy")
     player.z_index = 1
     add_child(player)
-    start_level()
+    $AnimationPlayer.play("Level1")
 
 
-func _process(_delta):
-    check_cursor_hold()
-    check_cleared_wave()
+func _physics_process(_delta):
+    if not in_transition and spawned_first_wave:
+        check_cursor_hold()
+        check_cleared_wave()
 
 
 func check_cursor_hold():
@@ -66,7 +69,6 @@ func check_cleared_wave():
             wave_cleared()
 
 func level_cleared():
-    print("level_cleared")
     if lev_clear:
         return
     lev_clear = true
@@ -90,6 +92,8 @@ func start_level():
     wave = 1
     $Background.play(str(level))
     spawn_wave()
+    in_transition = false
+    spawned_first_wave = true
 
 func spawn_wave():
     print("spawn_wave")
@@ -149,7 +153,9 @@ func _entered_goal(goal):
         c.queue_free()
     goal.queue_free()
     level += 1
-    start_level()
+    in_transition = true
+    spawned_first_wave = false
+    $AnimationPlayer.play("Level" + str(level))
 
 func _player_detected_enemy(body):
     var layer = body.get_collision_layer()
@@ -193,3 +199,8 @@ func _spawn_enemy_four_projectile(pos: Vector2, direction: Vector2):
     p.position = pos
     p.set_direction(direction)
     $Projectiles.call_deferred("add_child", p)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+    start_level()
+
