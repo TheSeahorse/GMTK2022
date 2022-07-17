@@ -12,6 +12,10 @@ func _ready():
     $Shadow.play("seeking")
 
 func _physics_process(_delta):
+    if frozen:
+        if !falling and !rising and !seeking:
+            $Shadow.hide()
+        return
     if seeking:
         if position.distance_to(move_target.position) < 10:
             seeking = false

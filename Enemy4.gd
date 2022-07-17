@@ -18,6 +18,8 @@ func _on_ShootTimer_timeout():
 
 
 func _on_ChargeTimer_timeout():
+    if frozen:
+        return
     var counter = 1
     if rotational_position == "vertical":
         for pos in $Vertical.get_children():

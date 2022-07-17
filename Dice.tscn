@@ -33,7 +33,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 37.5, 24 )
+extents = Vector2( 51.5, 31.5 )
 
 [node name="Dice" type="Area2D"]
 collision_layer = 16
@@ -41,13 +41,13 @@ collision_mask = 32
 script = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.7, 0.7 )
 frames = SubResource( 1 )
 frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.5, 5 )
+position = Vector2( 0.5, 6.5 )
 shape = SubResource( 2 )
 
 [node name="PickedUpStream" type="AudioStreamPlayer" parent="."]
