@@ -14,6 +14,7 @@ func _ready():
 func _process(_delta):
     if Input.is_action_just_pressed("left_click") and mouse_over:
         holding = true
+        $PickedUpStream.play(0.35)
     if Input.is_action_just_released("left_click") and holding:
         if stat_box_over:
             stat_box.update_value(max_value)

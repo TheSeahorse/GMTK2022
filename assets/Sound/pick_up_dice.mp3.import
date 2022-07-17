@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pick_up_dice.mp3-7cfc0f0016285a0afea48061f251fcda.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/pick_up_dice.mp3"
+dest_files=[ "res://.import/pick_up_dice.mp3-7cfc0f0016285a0afea48061f251fcda.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

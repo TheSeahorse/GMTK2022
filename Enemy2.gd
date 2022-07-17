@@ -18,6 +18,7 @@ func shoot():
     p.set_direction(direction)
     p.position = position
     get_parent().add_child(p)
+    $FireStream.play(0.5)
 
 func _on_AttackTimer_timeout():
     $AnimatedSprite.play("shooting")

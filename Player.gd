@@ -154,6 +154,7 @@ func is_player_attacked():
             $DamagedTimer.start()
             $DamagedAnimation.play("damaged")
             emit_signal("enemy_detected", enemies_on_player.front())
+            $DamageTakenStream.play(0.2)
 
 func _on_EnemyDetector_body_entered(body):
     enemies_on_player.append(body)
