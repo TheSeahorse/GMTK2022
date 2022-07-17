@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/Backgrounds/board1.png" type="Texture" id=2]
@@ -11,9 +11,24 @@
 [ext_resource path="res://assets/Backgrounds/level_transition.png" type="Texture" id=9]
 [ext_resource path="res://assets/Backgrounds/black.png" type="Texture" id=10]
 [ext_resource path="res://assets/Backgrounds/menu_background.png" type="Texture" id=11]
+[ext_resource path="res://assets/Sound/theme_3.mp3" type="AudioStream" id=12]
+[ext_resource path="res://assets/Sound/theme_1.mp3" type="AudioStream" id=13]
+[ext_resource path="res://assets/Sound/theme_2.mp3" type="AudioStream" id=14]
+[ext_resource path="res://assets/Sound/theme_5.mp3" type="AudioStream" id=15]
+[ext_resource path="res://assets/Sound/theme_4.mp3" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "5",
@@ -24,19 +39,9 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "1",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "3",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
@@ -96,6 +101,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 1, 1 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_middle_of_animation"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Level2"
@@ -147,6 +166,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_middle_of_animation"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -200,6 +233,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 1, 1 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_middle_of_animation"
+} ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "Level4"
@@ -252,6 +299,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 1, 1 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_middle_of_animation"
+} ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "Level5"
@@ -303,6 +364,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 0.3, 0.3 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_middle_of_animation"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -416,6 +491,25 @@ anims/Level3 = SubResource( 5 )
 anims/Level4 = SubResource( 6 )
 anims/Level5 = SubResource( 7 )
 anims/RESET = SubResource( 3 )
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="Level1" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 13 )
+
+[node name="Level2" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 14 )
+
+[node name="Level3" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 12 )
+
+[node name="Level4" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 16 )
+
+[node name="Level5" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 15 )
+
+[node name="Tween" type="Tween" parent="Music"]
 
 [connection signal="stats_updated" from="Hud" to="." method="_on_Hud_stats_updated"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]

@@ -95,7 +95,6 @@ func start_level():
     lev_clear = false
     wave_over = false
     wave = 1
-    $Background.play(str(level))
     spawn_wave()
     in_transition = false
     spawned_first_wave = true
@@ -208,4 +207,15 @@ func _spawn_enemy_four_projectile(pos: Vector2, direction: Vector2):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
     start_level()
+
+
+func _middle_of_animation():
+    $Background.play(str(level))
+    var new_song: AudioStreamPlayer = get_node("Music/Level" + str(level))
+    if level == 1:
+        new_song.play()
+    else:
+        var playing_song: AudioStreamPlayer = get_node("Music/Level" + str(level-1))
+        new_song.play(playing_song.get_playback_position())
+        playing_song.stop()
 
