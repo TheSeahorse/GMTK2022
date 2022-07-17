@@ -16,3 +16,16 @@ func _on_CoinTimer_timeout():
     var coin = Coin.instance()
     coin.position = Vector2(rndX, rndY)
     $Coins.add_child(coin)
+
+
+func _on_CreditsTimer_timeout():
+    $CoinTimer.stop()
+    $Coins.queue_free()
+    $Player.hide()
+    $WinWinWin.hide()
+    $Credits.show()
+    $MenuTimer.start()
+
+
+func _on_MenuTimer_timeout():
+    get_tree().change_scene("res://Menu.tscn")

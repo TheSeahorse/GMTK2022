@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/Character/character_victory_3.png" type="Texture" id=1]
 [ext_resource path="res://assets/Character/character_victory_4.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/win_win_win_1.png" type="Texture" id=9]
 [ext_resource path="res://Victory.gd" type="Script" id=10]
 [ext_resource path="res://assets/Sound/win.mp3" type="AudioStream" id=11]
+[ext_resource path="res://assets/Backgrounds/credits.png" type="Texture" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -80,4 +81,20 @@ autostart = true
 stream = ExtResource( 11 )
 autoplay = true
 
+[node name="CreditsTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="MenuTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="Credits" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 12 )
+centered = false
+
 [connection signal="timeout" from="CoinTimer" to="." method="_on_CoinTimer_timeout"]
+[connection signal="timeout" from="CreditsTimer" to="." method="_on_CreditsTimer_timeout"]
+[connection signal="timeout" from="MenuTimer" to="." method="_on_MenuTimer_timeout"]
