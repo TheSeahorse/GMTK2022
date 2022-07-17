@@ -162,7 +162,6 @@ func _on_EnemyDetector_body_entered(body):
 func _on_EnemyDetector_body_exited(body):
     enemies_on_player.erase(body)
 
-
 func set_attack_modifier(mod):
     attack_cooldown_modifier = mod
 

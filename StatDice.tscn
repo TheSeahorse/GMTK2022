@@ -58,6 +58,9 @@ script = ExtResource( 8 )
 
 [node name="ColorTimer" type="Timer" parent="."]
 
+[node name="HurtTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Outline" type="Sprite" parent="."]
 scale = Vector2( 1.05, 1.05 )
 texture = ExtResource( 5 )
@@ -76,4 +79,5 @@ shape = SubResource( 2 )
 one_shot = true
 
 [connection signal="timeout" from="ColorTimer" to="." method="_on_ColorTimer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_HurtTimer_timeout"]
 [connection signal="timeout" from="ExtraRollTimer" to="." method="extra_roll"]

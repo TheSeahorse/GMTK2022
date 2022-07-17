@@ -8,6 +8,15 @@ var new_max_value: int
 var extra_rolls = 0
 
 
+func decrease():
+    if value == 1:
+        return
+    value -= 1
+    $Value.play(str(value))
+    $Outline.modulate = Color8(255,0,0,255)
+    $HurtTimer.start()
+
+
 func update_value(max_val: int):
     new_max_value = max_val
     extra_rolls = 6
@@ -34,3 +43,7 @@ func extra_roll():
 func _on_ColorTimer_timeout():
     $Outline.modulate = Color8(255,255,255,255)
     $Value.modulate = Color8(255,255,255,255)
+
+
+func _on_HurtTimer_timeout():
+    $Outline.modulate = Color8(255,255,255,255)

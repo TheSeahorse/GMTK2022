@@ -90,7 +90,7 @@ func start_level():
     wave = 1
     $Background.play(str(level))
     spawn_wave()
-    
+
 func spawn_wave():
     print("spawn_wave")
     var waves
@@ -104,7 +104,7 @@ func spawn_wave():
         4:
             waves = level4
         5:
-            waves = level5    
+            waves = level5
     for enemy in waves[wave-1]:
         add_enemy(enemy)
     wave_over = false

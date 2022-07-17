@@ -13,3 +13,9 @@ func get_speed_stat():
 
 func get_cooldown_stat():
     return $StatDice2.value
+
+func decrease_all():
+    $StatDice.decrease()
+    $StatDice2.decrease()
+    $StatDice3.decrease()
+    emit_signal("stats_updated")
